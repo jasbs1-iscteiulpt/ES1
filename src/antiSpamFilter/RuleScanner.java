@@ -6,9 +6,20 @@ import java.util.Scanner;
 
 public class RuleScanner {
 	
-	public ArrayList<String> rules = new ArrayList<String>();
 	
-	public void readFile(String filelocation) {
+	public static RuleScanner instance;
+	public static ArrayList<String> rules = new ArrayList<String>();
+	
+	
+	public RuleScanner getInstance(){
+		
+		if(instance==null) {
+			instance=new RuleScanner();
+		}
+		return instance;
+	}
+	
+	public static void readFile(String filelocation) {
 		
 	try {
 
@@ -23,10 +34,14 @@ public class RuleScanner {
         }
         input.close();
 
-    } catch (Exception ex) {
+    	} catch (Exception ex) {
         ex.printStackTrace();
-    }
-}
+    	}
+	}
+	
+	public static void main(String[] args) {
+		RuleScanner.readFile("rules.cf");
+	}
 
 
 }
