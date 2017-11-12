@@ -8,6 +8,7 @@ public class RuleScanner {
 	
 	
 	public static RuleScanner instance;
+	
 	//Lista @rules de regras para serem apresentadas na UI
 	public static ArrayList<String> rules = new ArrayList<String>();
 	
