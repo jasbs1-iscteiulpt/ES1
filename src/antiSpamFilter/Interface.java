@@ -20,6 +20,8 @@ import javax.swing.JScrollPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import javax.swing.JProgressBar;
+import java.awt.SystemColor;
+import javax.swing.UIManager;
 
 public class Interface {
 
@@ -55,7 +57,7 @@ public class Interface {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.getContentPane().setBackground(Color.WHITE);
+		frame.getContentPane().setBackground(new Color(255, 255, 255));
 		frame.setBounds(100, 100, 550, 446);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -65,12 +67,18 @@ public class Interface {
 		frame.setJMenuBar(menuBar);
 		
 		JButton btnManual = new JButton("Manual");
-		btnManual.setBackground(Color.WHITE);
-		btnManual.setEnabled(false);
+		btnManual.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnManual.setForeground(new Color(0, 0, 0));
+		btnManual.setBackground(new Color(169, 169, 169));
+		btnManual.setEnabled(true);
 		menuBar.add(btnManual);
 		
 		JButton btnAutomtico = new JButton("Autom\u00E1tico");
-		btnAutomtico.setBackground(Color.WHITE);
+		btnAutomtico.setForeground(new Color(0, 0, 0));
+		btnAutomtico.setBackground(new Color(245, 245, 245));
 		menuBar.add(btnAutomtico);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -81,14 +89,20 @@ public class Interface {
 		textField.setColumns(10);
 		
 		JButton btnBrowser = new JButton("Search");
+		btnBrowser.setForeground(Color.WHITE);
+		btnBrowser.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnBrowser.setBackground(SystemColor.textHighlight);
 		
 		JButton btnNewButton = new JButton("Run");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setForeground(Color.BLACK);
-		btnNewButton.setBackground(Color.WHITE);
+		btnNewButton.setForeground(Color.WHITE);
+		btnNewButton.setBackground(SystemColor.textHighlight);
 		
 		JLabel lblFalsosPositivos = new JLabel("Falsos Positivos");
 		
