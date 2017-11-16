@@ -6,9 +6,6 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import java.awt.BorderLayout;
-import javax.swing.JPanel;
-import java.awt.Button;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
@@ -22,7 +19,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import javax.swing.JProgressBar;
 import java.awt.SystemColor;
-import javax.swing.UIManager;
+
 
 public class Interface {
 
@@ -197,6 +194,7 @@ public class Interface {
 			rulesArray [i][1]=null;
 			
 		}
+		System.out.println(rulesArray);
 		table = new JTable();
 		table.setModel(new DefaultTableModel(rulesArray,new String[] {"Regras", "Peso"}));
 		scrollPane.setViewportView(table);
