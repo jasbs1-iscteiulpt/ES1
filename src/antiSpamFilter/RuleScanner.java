@@ -13,7 +13,7 @@ public class RuleScanner {
 	public static ArrayList<String> rules = new ArrayList<String>();
 	
 	
-	public RuleScanner getInstance(){
+	public static RuleScanner getInstance(){
 		
 		if(instance==null) {
 			instance=new RuleScanner();

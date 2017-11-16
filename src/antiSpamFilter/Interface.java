@@ -10,6 +10,7 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import java.awt.Button;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.JTable;
@@ -36,7 +37,15 @@ public class Interface {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					//chama o ruleScanner e lê o ficheiro
 					Interface window = new Interface();
+					RuleScanner.readFile("rules.cf");
+					ArrayList<String> rules=RuleScanner.rules;
+					System.out.println(rules);
+					
+					
+					
+					
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
