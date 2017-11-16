@@ -29,7 +29,8 @@ public class Interface {
 	private JFrame frame;
 	private JTable table;
 	private JTextField textField;
-
+	ArrayList<String> rules;
+	private  String [][] rulesArray=new String [335] [2] ;
 	/**
 	 * Launch the application.
 	 */
@@ -37,15 +38,7 @@ public class Interface {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					//chama o ruleScanner e lê o ficheiro
 					Interface window = new Interface();
-					RuleScanner.readFile("rules.cf");
-					ArrayList<String> rules=RuleScanner.rules;
-					System.out.println(rules);
-					
-					
-					
-					
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -194,31 +187,18 @@ public class Interface {
 							.addContainerGap())))
 		);
 		
+		//Lê o ficheiro e insere os valores dentro da matriz que vai para a table
+		RuleScanner.readFile("rules.cf");
+		ArrayList<String> rules=RuleScanner.rules;
+		System.out.println(rules);
+		rulesArray =new String [rules.size()] [2] ;
+		for(int i=0;i<rules.size(); i++) {
+			rulesArray [i][0]=rules.get(i);
+			rulesArray [i][1]=null;
+			
+		}
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-			},
-			new String[] {
-				"Regras", "Peso"
-			}
-		));
+		table.setModel(new DefaultTableModel(rulesArray,new String[] {"Regras", "Peso"}));
 		scrollPane.setViewportView(table);
 		
 		JLabel lblNewLabel = new JLabel("New label");

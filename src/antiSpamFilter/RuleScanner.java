@@ -32,7 +32,7 @@ public class RuleScanner {
         while (input.hasNextLine()) {
             String line = input.nextLine();
             rules.add(line);
-            System.out.println(line);   
+           
         }
         input.close();
 
