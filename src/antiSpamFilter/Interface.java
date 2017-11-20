@@ -1,24 +1,26 @@
 package antiSpamFilter;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JMenuBar;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.awt.event.ActionEvent;
 import java.awt.Color;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
+import java.awt.EventQueue;
+import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.util.ArrayList;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JScrollPane;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenuBar;
 import javax.swing.JProgressBar;
-import java.awt.SystemColor;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.table.DefaultTableModel;
 
 
 public class Interface {
@@ -28,6 +30,9 @@ public class Interface {
 	private JTextField textField;
 	ArrayList<String> rules;
 	private  String [][] rulesArray=new String [335] [2] ;
+	
+	public File file;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -57,7 +62,7 @@ public class Interface {
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(255, 255, 255));
-		frame.setBounds(100, 100, 550, 446);
+		frame.setBounds(100, 100, 570, 446);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -82,15 +87,25 @@ public class Interface {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		
-		JLabel lblPath = new JLabel("Path:");
+		JLabel lblPath = new JLabel("Output File Path:");
 		
 		textField = new JTextField();
 		textField.setColumns(10);
 		
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		
 		JButton btnBrowser = new JButton("Search");
-		btnBrowser.setForeground(Color.WHITE);
+		btnBrowser.setForeground(Color.BLACK);
 		btnBrowser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//In response to a button click set outputfile, filepath
+				int returnVal = fileChooser.showOpenDialog(frame);
+				
+				if (returnVal == JFileChooser.APPROVE_OPTION) {
+		            file = fileChooser.getSelectedFile();
+		            textField.setText(file.getAbsolutePath());
+				}
 			}
 		});
 		btnBrowser.setBackground(SystemColor.textHighlight);
@@ -184,7 +199,7 @@ public class Interface {
 							.addContainerGap())))
 		);
 		
-		//Lê o ficheiro e insere os valores dentro da matriz que vai para a table
+		//Lï¿½ o ficheiro e insere os valores dentro da matriz que vai para a table
 		RuleScanner.readFile("rules.cf");
 		ArrayList<String> rules=RuleScanner.rules;
 		System.out.println(rules);
