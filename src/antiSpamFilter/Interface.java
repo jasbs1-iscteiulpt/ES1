@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -29,7 +31,7 @@ public class Interface {
 	private JTable table;
 	private JTextField textField;
 	ArrayList<String> rules;
-	private  String [][] rulesArray=new String [335] [2] ;
+	private  HashMap<String, Integer> rulesArray=new HashMap<String, Integer>();
 	private DefaultTableModel model;
 	
 	public File file;
@@ -114,9 +116,10 @@ public class Interface {
 		JButton btnNewButton = new JButton("Run");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Main Run!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Já cria o vetor manualmente aqui quando clicas run!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-				for(int i=0; i<rulesArray.length; i++) {
-					rulesArray[i][1]=model.getValueAt(i, 1).toString();
+				//Main Run!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Jï¿½ cria o vetor manualmente aqui quando clicas run!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+				for(int i=0; i<rulesArray.size(); i++) {
+					rulesArray.clear();
+					rulesArray.put(model.getValueAt(i, 0).toString(), Integer.parseInt(model.getValueAt(i, 1).toString()));
 					//System.out.print(rulesArray[i][0] + " " + rulesArray[i][1] + "\n");
 				}
 			}
@@ -205,19 +208,18 @@ public class Interface {
 							.addContainerGap())))
 		);
 		
-		//Lê o ficheiro e insere os valores dentro da matriz que vai para a table
-		RuleScanner.readFile("rules.cf");
-		ArrayList<String> rules=RuleScanner.rules;
-		System.out.println(rules);
-		rulesArray =new String [rules.size()] [2] ;
-		for(int i=0;i<rules.size(); i++) {
-			rulesArray [i][0]=rules.get(i);
-			rulesArray [i][1]=null;
-			
-		}
+		//Lï¿½ o ficheiro e insere os valores dentro da matriz que vai para a table
+		rulesArray=RuleScanner.readFile("rules.cf");
 		System.out.println(rulesArray);
 		table = new JTable();
-		model = new DefaultTableModel(rulesArray,new String[] {"Regras", "Peso"});
+		String[][] rules = new String[rulesArray.keySet().toArray().length][rulesArray.values().toArray().length];
+		Object[] rule=rulesArray.keySet().toArray();
+		Object[] value=rulesArray.values().toArray();
+		for(int i=0; i<rules.length; i++){
+				rules[i][0]=rule[i].toString();
+				rules[i][1]=value[i].toString();
+			}
+		model = new DefaultTableModel(rules,new String[] {"Regras", "Peso"});
 		table.setModel(model);
 		scrollPane.setViewportView(table);
 		

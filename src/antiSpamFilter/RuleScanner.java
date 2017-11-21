@@ -1,27 +1,14 @@
 package antiSpamFilter;
 
 import java.io.File;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class RuleScanner {
 	
-	
-	public static RuleScanner instance;
-	
-	//Lista @rules de regras para serem apresentadas na UI
-	public static ArrayList<String> rules = new ArrayList<String>();
-	
-	
-	public static RuleScanner getInstance(){
+	public static HashMap<String,Integer> readFile(String filelocation) {
 		
-		if(instance==null) {
-			instance=new RuleScanner();
-		}
-		return instance;
-	}
-	
-	public static void readFile(String filelocation) {
+	HashMap<String,Integer> rules = new HashMap<String,Integer>();
 		
 	try {
 
@@ -31,18 +18,26 @@ public class RuleScanner {
         
         while (input.hasNextLine()) {
             String line = input.nextLine();
-            rules.add(line);
-           
+            String[] ruleValue=line.split(" ");
+            String rule=ruleValue[0];
+            int value=0;
+            
+            if(ruleValue.length>1){
+            	Integer.parseInt(ruleValue[1]);
+            }
+            rules.put(rule, value);   
         }
         input.close();
 
     	} catch (Exception ex) {
         ex.printStackTrace();
     	}
+	
+	return rules;
 	}
 	
 	public static void main(String[] args) {
-		RuleScanner.readFile("rules.cf");
+		System.out.println(RuleScanner.readFile("rules.cf"));
 	}
 
 
