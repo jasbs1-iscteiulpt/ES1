@@ -30,6 +30,7 @@ public class Interface {
 	private JTextField textField;
 	ArrayList<String> rules;
 	private  String [][] rulesArray=new String [335] [2] ;
+	private DefaultTableModel model;
 	
 	public File file;
 	
@@ -113,6 +114,11 @@ public class Interface {
 		JButton btnNewButton = new JButton("Run");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Main Run!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Já cria o vetor manualmente aqui quando clicas run!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+				for(int i=0; i<rulesArray.length; i++) {
+					rulesArray[i][1]=model.getValueAt(i, 1).toString();
+					//System.out.print(rulesArray[i][0] + " " + rulesArray[i][1] + "\n");
+				}
 			}
 		});
 		btnNewButton.setForeground(Color.WHITE);
@@ -199,7 +205,7 @@ public class Interface {
 							.addContainerGap())))
 		);
 		
-		//Lï¿½ o ficheiro e insere os valores dentro da matriz que vai para a table
+		//Lê o ficheiro e insere os valores dentro da matriz que vai para a table
 		RuleScanner.readFile("rules.cf");
 		ArrayList<String> rules=RuleScanner.rules;
 		System.out.println(rules);
@@ -211,7 +217,8 @@ public class Interface {
 		}
 		System.out.println(rulesArray);
 		table = new JTable();
-		table.setModel(new DefaultTableModel(rulesArray,new String[] {"Regras", "Peso"}));
+		model = new DefaultTableModel(rulesArray,new String[] {"Regras", "Peso"});
+		table.setModel(model);
 		scrollPane.setViewportView(table);
 		
 		JLabel lblNewLabel = new JLabel("New label");
