@@ -105,9 +105,11 @@ public class Interface {
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
 		            file = fileChooser.getSelectedFile();
 		            textField.setText(file.getAbsolutePath());
-		            rulesArray=RuleScanner.readFile(file.getAbsolutePath());
-		            model.setDataVector(RuleScanner.MapToArray(rulesArray), new String[] {"Regras", "Peso"});
-		            model.fireTableDataChanged();
+		            if(file.isFile()){
+		            	rulesArray=RuleScanner.readFile(file.getAbsolutePath());
+		            	model.setDataVector(RuleScanner.MapToArray(rulesArray), new String[] {"Regras", "Peso"});
+		            	model.fireTableDataChanged();
+		            }
 				}
 			}
 		});
