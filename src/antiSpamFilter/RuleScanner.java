@@ -36,6 +36,18 @@ public class RuleScanner {
 	return rules;
 	}
 	
+	public static String[][] MapToArray(HashMap<String,Integer> rulesArray){
+
+		String[][] rules = new String[rulesArray.keySet().toArray().length][rulesArray.values().toArray().length];
+		Object[] rule=rulesArray.keySet().toArray();
+		Object[] value=rulesArray.values().toArray();
+		for(int i=0; i<rules.length; i++){
+				rules[i][0]=rule[i].toString();
+				rules[i][1]=value[i].toString();
+			}
+		return rules;
+	}
+	
 	public static void main(String[] args) {
 		System.out.println(RuleScanner.readFile("rules.cf"));
 	}

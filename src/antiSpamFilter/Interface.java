@@ -6,8 +6,6 @@ import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 import javax.swing.GroupLayout;
@@ -30,7 +28,6 @@ public class Interface {
 	private JFrame frame;
 	private JTable table;
 	private JTextField textField;
-	ArrayList<String> rules;
 	private  HashMap<String, Integer> rulesArray=new HashMap<String, Integer>();
 	private DefaultTableModel model;
 	
@@ -90,13 +87,13 @@ public class Interface {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		
-		JLabel lblPath = new JLabel("Output File Path:");
+		JLabel lblPath = new JLabel("rules.cf File Path:");
 		
 		textField = new JTextField();
 		textField.setColumns(10);
 		
 		JFileChooser fileChooser = new JFileChooser();
-		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 		
 		JButton btnBrowser = new JButton("Load Configuration");
 		btnBrowser.setForeground(Color.BLACK);
@@ -108,6 +105,9 @@ public class Interface {
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
 		            file = fileChooser.getSelectedFile();
 		            textField.setText(file.getAbsolutePath());
+		            rulesArray=RuleScanner.readFile(file.getAbsolutePath());
+		            model.setDataVector(RuleScanner.MapToArray(rulesArray), new String[] {"Regras", "Peso"});
+		            model.fireTableDataChanged();
 				}
 			}
 		});
@@ -119,13 +119,12 @@ public class Interface {
 			public void actionPerformed(ActionEvent e) {
 				//Main Run!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! J� cria o vetor manualmente aqui quando clicas run!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 				for(int i=0; i<rulesArray.size(); i++) {
-					rulesArray.clear();
 					rulesArray.put(model.getValueAt(i, 0).toString(), Integer.parseInt(model.getValueAt(i, 1).toString()));
-					//System.out.print(rulesArray[i][0] + " " + rulesArray[i][1] + "\n");
 				}
+//				System.out.print(rulesArray + "\n");
 			}
 		});
-		btnNewButton.setForeground(Color.WHITE);
+		btnNewButton.setForeground(Color.BLACK);
 		btnNewButton.setBackground(SystemColor.textHighlight);
 		
 		
@@ -220,18 +219,9 @@ public class Interface {
 					.addGap(9))
 		);
 		
-		//L� o ficheiro e insere os valores dentro da matriz que vai para a table
-		rulesArray=RuleScanner.readFile("rules.cf");
-		System.out.println(rulesArray);
 		table = new JTable();
-		String[][] rules = new String[rulesArray.keySet().toArray().length][rulesArray.values().toArray().length];
-		Object[] rule=rulesArray.keySet().toArray();
-		Object[] value=rulesArray.values().toArray();
-		for(int i=0; i<rules.length; i++){
-				rules[i][0]=rule[i].toString();
-				rules[i][1]=value[i].toString();
-			}
-		model = new DefaultTableModel(rules,new String[] {"Regras", "Peso"});
+		String[][] modeling=new String[335][2];
+		model = new DefaultTableModel(modeling,new String[] {"Regras", "Peso"});
 		table.setModel(model);
 		scrollPane.setViewportView(table);
 		
