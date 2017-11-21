@@ -63,7 +63,7 @@ public class Interface {
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(255, 255, 255));
-		frame.setBounds(100, 100, 570, 446);
+		frame.setBounds(100, 100, 680, 479);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -96,7 +96,7 @@ public class Interface {
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		
-		JButton btnBrowser = new JButton("Search");
+		JButton btnBrowser = new JButton("Load Configuration");
 		btnBrowser.setForeground(Color.BLACK);
 		btnBrowser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -111,6 +111,7 @@ public class Interface {
 		});
 		btnBrowser.setBackground(SystemColor.textHighlight);
 		
+		
 		JButton btnNewButton = new JButton("Run");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -124,6 +125,7 @@ public class Interface {
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setBackground(SystemColor.textHighlight);
 		
+		
 		JLabel lblFalsosPositivos = new JLabel("Falsos Positivos");
 		
 		JLabel lblFalsosNegativos = new JLabel("Falsos Negativos");
@@ -135,6 +137,8 @@ public class Interface {
 		JLabel label = new JLabel("0/0");
 		
 		JLabel label_1 = new JLabel("0/0");
+		
+		JButton btnSave = new JButton("Save Configuration");
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -142,41 +146,48 @@ public class Interface {
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(77)
-							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE))
+							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(btnSave))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(25)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
+								.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
 									.addComponent(lblPath)
 									.addGap(18)
-									.addComponent(textField, GroupLayout.PREFERRED_SIZE, 301, GroupLayout.PREFERRED_SIZE)
-									.addGap(28)
-									.addComponent(btnBrowser))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 222, GroupLayout.PREFERRED_SIZE)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+									.addComponent(textField, GroupLayout.PREFERRED_SIZE, 301, GroupLayout.PREFERRED_SIZE))
+								.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+									.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 269, GroupLayout.PREFERRED_SIZE)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 										.addGroup(groupLayout.createSequentialGroup()
-											.addGap(99)
-											.addComponent(label_1))
-										.addGroup(groupLayout.createSequentialGroup()
-											.addGap(67)
-											.addComponent(lblFalsosNegativos))
-										.addGroup(groupLayout.createSequentialGroup()
-											.addGap(66)
-											.addComponent(lblFalsosPositivos))
-										.addGroup(groupLayout.createSequentialGroup()
-											.addGap(99)
-											.addComponent(label))
-										.addGroup(groupLayout.createSequentialGroup()
-											.addGap(37)
+											.addGap(28)
 											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-												.addComponent(progressBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-												.addComponent(progressBar_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))))))
-					.addContainerGap(71, Short.MAX_VALUE))
+												.addGroup(groupLayout.createSequentialGroup()
+													.addGap(28)
+													.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+														.addComponent(progressBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+														.addComponent(progressBar_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+												.addGroup(groupLayout.createSequentialGroup()
+													.addGap(89)
+													.addComponent(label_1))
+												.addGroup(groupLayout.createSequentialGroup()
+													.addGap(56)
+													.addComponent(lblFalsosNegativos))))
+										.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+											.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+											.addComponent(label)
+											.addGap(67))
+										.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+											.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+											.addComponent(lblFalsosPositivos)
+											.addGap(24)))))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(btnBrowser)))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblPath)
@@ -184,25 +195,26 @@ public class Interface {
 						.addComponent(btnBrowser))
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 289, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(btnNewButton)
-							.addGap(9))
+							.addGap(7)
+							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 289, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(49)
+							.addGap(43)
 							.addComponent(lblFalsosPositivos)
-							.addGap(1)
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(label)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(progressBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(28)
+							.addGap(18)
 							.addComponent(lblFalsosNegativos)
-							.addGap(1)
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(label_1)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(progressBar_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap())))
+							.addComponent(progressBar_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnNewButton)
+						.addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
+					.addGap(9))
 		);
 		
 		//Lê o ficheiro e insere os valores dentro da matriz que vai para a table
