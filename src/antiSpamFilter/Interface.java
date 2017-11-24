@@ -91,6 +91,7 @@ public class Interface {
 		
 		textField = new JTextField();
 		textField.setColumns(10);
+		textField.setEditable(false);
 		
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
