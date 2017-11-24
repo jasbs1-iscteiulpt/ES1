@@ -7,12 +7,12 @@ import java.io.IOException;
 
 public class MailReader {
 	
-	public static void readHam(){
+	public static HashMap<String, ArrayList<String> > readHam(String filePath){
 	HashMap<String, ArrayList<String> > hash1 = new HashMap<String, ArrayList<String>>();
 	String line = "";
 	BufferedReader in;
 	try {
-		in = new BufferedReader(new FileReader("ham.log"));
+		in = new BufferedReader(new FileReader(filePath));
 			while ((line = in.readLine()) != null) {
 			    String rules4u[] = line.split("\t");
 			    ArrayList<String> Array = new ArrayList<String>();
@@ -24,12 +24,13 @@ public class MailReader {
 			}
 			in.close();
 		} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 		}
+	
+		return hash1;
 	}
 	
 	public static void main(String[] pussy){
-		MailReader.readHam();
+		System.out.print(MailReader.readHam("ham.log"));
 	}
 }
