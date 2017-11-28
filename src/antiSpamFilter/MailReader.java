@@ -5,23 +5,24 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * 
+ * Class used for reading email. Static methods only.
+ * 
+ *  @author ES1-METI-PL-106
+ * 
+ * **/
+
 public class MailReader {
 	
 	/**
-	 * 
-	 * Class used for reading email
-	 * 
-	 *  @author ES1-METI-PL-106
+	 *  Receives a ".log" file location as input and returns an HashMap with the values of it parsed in
+	 *  @param filePath absolute location of the log file
+	 *  @return email
 	 * 
 	 * **/
 	
 	public static HashMap<String, ArrayList<String> > read(String filePath){
-		
-		/**
-		 *  Recives a ".log" file location as input and returns an HashMap<String, ArrayList<String> > with the values of it parsed in
-		 * 
-		 * 
-		 * **/
 		
 	HashMap<String, ArrayList<String> > hash1 = new HashMap<String, ArrayList<String>>();
 	String line = "";
