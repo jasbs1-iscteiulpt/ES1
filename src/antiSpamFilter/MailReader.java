@@ -7,7 +7,22 @@ import java.io.IOException;
 
 public class MailReader {
 	
+	/**
+	 * 
+	 * Class used for reading email
+	 * 
+	 *  @author ES1-METI-PL-106
+	 * 
+	 * **/
+	
 	public static HashMap<String, ArrayList<String> > read(String filePath){
+		
+		/**
+		 *  Recives a ".log" file location as input and returns an HashMap<String, ArrayList<String> > with the values of it parsed in
+		 * 
+		 * 
+		 * **/
+		
 	HashMap<String, ArrayList<String> > hash1 = new HashMap<String, ArrayList<String>>();
 	String line = "";
 	BufferedReader in;
