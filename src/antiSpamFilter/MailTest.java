@@ -18,7 +18,7 @@ public class MailTest {
 	int fn;
 	HashMap<String, ArrayList<String> > spam;
 	HashMap<String, ArrayList<String> > mail;
-	HashMap<String, Integer> rulesArray;
+	HashMap<String, Double> rulesArray;
 	
 	/**
 	 * 
@@ -29,7 +29,7 @@ public class MailTest {
 	 * 
 	 * **/
 	
-	public MailTest(HashMap<String, Integer> rulesArray) {
+	public MailTest(HashMap<String, Double> rulesArray) {
 		fn=0;
 		this.spam=MailReader.read("spam.log");
 		this.mail=MailReader.read("ham.log");
@@ -48,7 +48,7 @@ public class MailTest {
 		int checksum=0;
 		for (Entry<String, ArrayList<String>> entry : mail.entrySet()) {
 		    ArrayList<String> rules = entry.getValue();
-		    int summ=0;
+		    double summ=0;
 		    for(int i=0; i<rules.size(); i++) {
 		    	if(rulesArray.get(rules.get(i))!=null){
 		    		summ=summ+rulesArray.get(rules.get(i));
@@ -74,7 +74,7 @@ public class MailTest {
 		int checksum=0;
 		for (Entry<String, ArrayList<String>> entry : spam.entrySet()) {
 		    ArrayList<String> rules = entry.getValue();
-		    int summ=0;
+		    double summ=0;
 		    for(int i=0; i<rules.size(); i++) {
 		    	if(rulesArray.get(rules.get(i))!=null){
 		    		summ=summ+rulesArray.get(rules.get(i));

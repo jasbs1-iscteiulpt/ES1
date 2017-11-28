@@ -28,7 +28,7 @@ public class Interface {
 	private JFrame frame;
 	private JTable table;
 	private JTextField textField;
-	private  HashMap<String, Integer> rulesArray=new HashMap<String, Integer>();
+	private  HashMap<String, Double> rulesArray=new HashMap<String, Double>();
 	private DefaultTableModel model;
 	
 	public File file;
@@ -126,7 +126,7 @@ public class Interface {
 			public void actionPerformed(ActionEvent e) {
 				//Main Run!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Ja cria o vetor manualmente aqui quando clicas run!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 				for(int i=0; i<rulesArray.size(); i++) {
-					rulesArray.put(model.getValueAt(i, 0).toString(), Integer.parseInt(model.getValueAt(i, 1).toString()));
+					rulesArray.put(model.getValueAt(i, 0).toString(), Double.parseDouble(model.getValueAt(i, 1).toString()));
 				}
 				MailTest test=new MailTest(rulesArray);
 				label.setText(Integer.toString(test.getFP()));
@@ -151,7 +151,7 @@ public class Interface {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				for(int i=0; i<rulesArray.size(); i++) {
-					rulesArray.put(model.getValueAt(i, 0).toString(), Integer.parseInt(model.getValueAt(i, 1).toString()));
+					rulesArray.put(model.getValueAt(i, 0).toString(), Double.parseDouble(model.getValueAt(i, 1).toString()));
 				}
 				if(file!=null){
 					RuleScanner.writeFile(file.getAbsolutePath(), RuleScanner.MapToArray(rulesArray));

@@ -23,9 +23,9 @@ public class RuleScanner {
 	 * 
 	 * **/
 	
-	public static HashMap<String,Integer> readFile(String filelocation) {
+	public static HashMap<String,Double> readFile(String filelocation) {
 		
-	HashMap<String,Integer> rules = new HashMap<String,Integer>();
+	HashMap<String,Double> rules = new HashMap<String,Double>();
 		
 	try {
 
@@ -37,10 +37,10 @@ public class RuleScanner {
             String line = input.nextLine();
             String[] ruleValue=line.split(" ");
             String rule=ruleValue[0];
-            int value=0;
+            double value=0;
             
             if(ruleValue.length>1){
-            	value = Integer.parseInt(ruleValue[1]);
+            	value = Double.parseDouble(ruleValue[1]);
             }
             rules.put(rule, value);   
         }
@@ -61,7 +61,7 @@ public class RuleScanner {
 	 * 
 	 * **/
 	
-	public static String[][] MapToArray(HashMap<String,Integer> rulesArray){
+	public static String[][] MapToArray(HashMap<String,Double> rulesArray){
 
 		String[][] rules = new String[rulesArray.keySet().toArray().length][rulesArray.values().toArray().length];
 		Object[] rule=rulesArray.keySet().toArray();
