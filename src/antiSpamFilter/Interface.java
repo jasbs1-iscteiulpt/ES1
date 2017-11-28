@@ -116,6 +116,10 @@ public class Interface {
 		});
 		btnBrowser.setBackground(SystemColor.textHighlight);
 		
+		JLabel label = new JLabel("0");
+		
+		JLabel label_1 = new JLabel("0");
+		
 		
 		JButton btnNewButton = new JButton("Run");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -124,7 +128,9 @@ public class Interface {
 				for(int i=0; i<rulesArray.size(); i++) {
 					rulesArray.put(model.getValueAt(i, 0).toString(), Integer.parseInt(model.getValueAt(i, 1).toString()));
 				}
-//				System.out.print(rulesArray + "\n");
+				MailTest test=new MailTest(rulesArray);
+				label.setText(Integer.toString(test.getFP()));
+				label_1.setText(Integer.toString(test.getFN()));
 			}
 		});
 		btnNewButton.setForeground(Color.BLACK);
@@ -138,10 +144,6 @@ public class Interface {
 		JProgressBar progressBar = new JProgressBar();
 		
 		JProgressBar progressBar_1 = new JProgressBar();
-		
-		JLabel label = new JLabel("0/0");
-		
-		JLabel label_1 = new JLabel("0/0");
 		
 		JButton btnSave = new JButton("Save Configuration");
 		btnSave.addActionListener(new ActionListener() {

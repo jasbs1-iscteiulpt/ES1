@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class MailReader {
 	
-	public static HashMap<String, ArrayList<String> > readHam(String filePath){
+	public static HashMap<String, ArrayList<String> > read(String filePath){
 	HashMap<String, ArrayList<String> > hash1 = new HashMap<String, ArrayList<String>>();
 	String line = "";
 	BufferedReader in;
@@ -31,6 +31,6 @@ public class MailReader {
 	}
 	
 	public static void main(String[] pussy){
-		System.out.print(MailReader.readHam("ham.log"));
+		System.out.print(MailReader.read("ham.log"));
 	}
 }
