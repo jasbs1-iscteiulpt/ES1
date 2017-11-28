@@ -4,6 +4,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+/**
+ * 
+ * Reads .log files and compares it with the given rules configuration to Identify False Positives and False Negatives
+ * for ham and spam
+ * 
+ * @author ES1-METI-PL-106
+ * 
+ * **/
+
 public class MailTest {
 	
 	int fn;
@@ -11,6 +20,14 @@ public class MailTest {
 	HashMap<String, ArrayList<String> > mail;
 	HashMap<String, Integer> rulesArray;
 	
+	/**
+	 * 
+	 * Constructor
+	 * 
+	 * @param rulesArray Rules Hashmap with rule/value pairs
+	 * @return MailTest
+	 * 
+	 * **/
 	
 	public MailTest(HashMap<String, Integer> rulesArray) {
 		fn=0;
@@ -18,6 +35,14 @@ public class MailTest {
 		this.mail=MailReader.read("ham.log");
 		this.rulesArray=rulesArray;
 	}
+	
+	/**
+	 * 
+	 * returns False Positives for mail/rules configuration
+	 * @return Integer
+	 *
+	 * 
+	 * **/
 	
 	public int getFP(){
 		int checksum=0;
@@ -35,6 +60,15 @@ public class MailTest {
 		}
 		return checksum;
 	}
+	
+	
+	/**
+	 * 
+	 * returns False Negatives for spam/rules configuration
+	 * @return Integer
+	 *
+	 * 
+	 * **/
 	
 	public int getFN(){
 		int checksum=0;
