@@ -124,7 +124,7 @@ public class Interface {
 		JButton btnNewButton = new JButton("Run");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Main Run!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! J� cria o vetor manualmente aqui quando clicas run!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+				//Main Run!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Ja cria o vetor manualmente aqui quando clicas run!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 				for(int i=0; i<rulesArray.size(); i++) {
 					rulesArray.put(model.getValueAt(i, 0).toString(), Integer.parseInt(model.getValueAt(i, 1).toString()));
 				}
