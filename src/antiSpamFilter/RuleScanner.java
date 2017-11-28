@@ -6,7 +6,22 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/**
+ * 
+ * General pourpose rule.cf reader/writer with only static methods
+ * @author ES1-METI-PL-106
+ * 
+ * **/
+
 public class RuleScanner {
+	
+	/**
+	 * 
+	 * rules.cf File reader
+	 * @param filelocation rules.cf absolute path
+	 * @return HashMap rules
+	 * 
+	 * **/
 	
 	public static HashMap<String,Integer> readFile(String filelocation) {
 		
@@ -38,6 +53,14 @@ public class RuleScanner {
 	return rules;
 	}
 	
+	/**
+	 * 
+	 * General purpose HashMap to String[][] converter
+	 * @param rulesArray
+	 * @return String rules
+	 * 
+	 * **/
+	
 	public static String[][] MapToArray(HashMap<String,Integer> rulesArray){
 
 		String[][] rules = new String[rulesArray.keySet().toArray().length][rulesArray.values().toArray().length];
@@ -51,6 +74,14 @@ public class RuleScanner {
 //		System.out.println(Arrays.toString(value));
 		return rules;
 	}
+	
+	/**
+	 * 
+	 * rules.cf File writer
+	 * @param filepath rules.cf absolute path
+	 * @param rules rules.cf current configuration
+	 * 
+	 * **/
 	
 	public static void writeFile(String filepath, String[][] rules){
 		try{

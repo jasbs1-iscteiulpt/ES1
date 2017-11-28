@@ -18,7 +18,7 @@ public class MailReader {
 	/**
 	 *  Receives a ".log" file location as input and returns an HashMap with the values of it parsed in
 	 *  @param filePath absolute location of the log file
-	 *  @return email
+	 *  @return HashMap email
 	 * 
 	 * **/
 	
