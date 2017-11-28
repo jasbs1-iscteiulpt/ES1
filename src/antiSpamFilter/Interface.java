@@ -131,6 +131,7 @@ public class Interface {
 				MailTest test=new MailTest(rulesArray);
 				label.setText(Integer.toString(test.getFP()));
 				label_1.setText(Integer.toString(test.getFN()));
+				//
 			}
 		});
 		btnNewButton.setForeground(Color.BLACK);
