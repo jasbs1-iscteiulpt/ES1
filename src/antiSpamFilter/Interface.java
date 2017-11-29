@@ -21,11 +21,12 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JTabbedPane;
 
 
 public class Interface {
 
-	private JFrame frame;
+	JFrame frame;
 	private JTable table;
 	private JTextField textField;
 	private  HashMap<String, Double> rulesArray=new HashMap<String, Double>();
@@ -60,30 +61,10 @@ public class Interface {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
+		frame = new JFrame("Anti Spam Filter For Professional MailBox - Manual Mode");
 		frame.getContentPane().setBackground(new Color(255, 255, 255));
-		frame.setBounds(100, 100, 680, 479);
+		frame.setBounds(100, 100, 632, 430);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBackground(Color.WHITE);
-		menuBar.setForeground(Color.BLACK);
-		frame.setJMenuBar(menuBar);
-		
-		JButton btnManual = new JButton("Manual");
-		btnManual.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnManual.setForeground(new Color(0, 0, 0));
-		btnManual.setBackground(new Color(169, 169, 169));
-		btnManual.setEnabled(true);
-		menuBar.add(btnManual);
-		
-		JButton btnAutomtico = new JButton("Autom\u00E1tico");
-		btnAutomtico.setForeground(new Color(0, 0, 0));
-		btnAutomtico.setBackground(new Color(245, 245, 245));
-		menuBar.add(btnAutomtico);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		
@@ -117,9 +98,10 @@ public class Interface {
 		btnBrowser.setBackground(SystemColor.textHighlight);
 		
 		JLabel label = new JLabel("0");
+		label.setForeground(Color.RED);
 		
 		JLabel label_1 = new JLabel("0");
-		
+		label_1.setForeground(Color.RED);
 		
 		JButton btnNewButton = new JButton("Run");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -141,10 +123,6 @@ public class Interface {
 		
 		JLabel lblFalsosNegativos = new JLabel("Falsos Negativos");
 		
-		JProgressBar progressBar = new JProgressBar();
-		
-		JProgressBar progressBar_1 = new JProgressBar();
-		
 		JButton btnSave = new JButton("Save Configuration");
 		btnSave.addActionListener(new ActionListener() {
 			
@@ -162,47 +140,36 @@ public class Interface {
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(19)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(77)
 							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(btnSave))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(25)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(lblPath)
-									.addGap(18)
+									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(textField, GroupLayout.PREFERRED_SIZE, 301, GroupLayout.PREFERRED_SIZE))
-								.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-									.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 269, GroupLayout.PREFERRED_SIZE)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(scrollPane, Alignment.TRAILING, 0, 0, Short.MAX_VALUE))
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(49)
+									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+											.addComponent(lblFalsosNegativos)
+											.addComponent(lblFalsosPositivos))
 										.addGroup(groupLayout.createSequentialGroup()
-											.addGap(28)
-											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-												.addGroup(groupLayout.createSequentialGroup()
-													.addGap(28)
-													.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-														.addComponent(progressBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-														.addComponent(progressBar_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-												.addGroup(groupLayout.createSequentialGroup()
-													.addGap(89)
-													.addComponent(label_1))
-												.addGroup(groupLayout.createSequentialGroup()
-													.addGap(56)
-													.addComponent(lblFalsosNegativos))))
-										.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-											.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-											.addComponent(label)
-											.addGap(67))
-										.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-											.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-											.addComponent(lblFalsosPositivos)
-											.addGap(24)))))
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(btnBrowser)))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+											.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+											.addGap(16))
+										.addGroup(groupLayout.createSequentialGroup()
+											.addComponent(label, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+											.addGap(23))))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(21)
+									.addComponent(btnBrowser)))))
+					.addContainerGap(20, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -214,26 +181,22 @@ public class Interface {
 						.addComponent(btnBrowser))
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(7)
-							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 289, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(43)
+							.addGap(33)
 							.addComponent(lblFalsosPositivos)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(label)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(progressBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(label, GroupLayout.PREFERRED_SIZE, 9, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
 							.addComponent(lblFalsosNegativos)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(label_1)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(progressBar_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(label_1))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(9)
+							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 289, GroupLayout.PREFERRED_SIZE)))
+					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnNewButton)
 						.addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
-					.addGap(9))
+					.addGap(5))
 		);
 		
 		table = new JTable();
