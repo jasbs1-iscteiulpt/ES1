@@ -62,7 +62,7 @@ public class StartMenuInterface {
 		frame.getContentPane().add(btnManual);
 		
 		JLabel lblAntispamFiilterFor = new JLabel("Anti-Spam FIilter For Professional Mailbox");
-		lblAntispamFiilterFor.setBounds(74, 10, 260, 13);
+		lblAntispamFiilterFor.setBounds(74, 10, 320, 13);
 		frame.getContentPane().add(lblAntispamFiilterFor);
 		
 		JLabel lblRunIn = new JLabel("Run in:");
@@ -70,7 +70,7 @@ public class StartMenuInterface {
 		frame.getContentPane().add(lblRunIn);
 		
 		JLabel lblEsmetipl = new JLabel("ES1-METI-PL-106");
-		lblEsmetipl.setBounds(142, 37, 100, 13);
+		lblEsmetipl.setBounds(142, 37, 150, 13);
 		frame.getContentPane().add(lblEsmetipl);
 		
 		JLabel label = new JLabel();

@@ -10,7 +10,12 @@ import org.uma.jmetal.solution.DoubleSolution;
 
 public class AntiSpamFilterProblem extends AbstractDoubleProblem {
 
-	  public AntiSpamFilterProblem() {
+	  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public AntiSpamFilterProblem() {
 	    // 335 variables (anti-spam filter rules) rules.cf lines 
 	    this(335);
 	  }
@@ -33,7 +38,7 @@ public class AntiSpamFilterProblem extends AbstractDoubleProblem {
 	  }
 
 	  public void evaluate(DoubleSolution solution){
-	    double aux, xi, xj;
+	    
 	    double[] falsos = new double[getNumberOfObjectives()]; //falsos[0]=FALSOS POSITIVOS falsos[1]=FALSOS NEGATIVOS
 	    double[] pesos = new double[getNumberOfVariables()]; //pesos para exprimentar
 	    for (int i = 0; i < solution.getNumberOfVariables(); i++) {
