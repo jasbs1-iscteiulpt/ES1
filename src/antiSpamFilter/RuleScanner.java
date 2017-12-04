@@ -1,8 +1,12 @@
 package antiSpamFilter;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -95,8 +99,46 @@ public class RuleScanner {
 		} catch(IOException ex){}
 	}
 	
+	public static String[] resultReader() {
+		String line = "";
+		BufferedReader in;
+		ArrayList<Integer> fp = new ArrayList<Integer>();
+		ArrayList<Integer> fn = new ArrayList<Integer>();
+		
+		try {
+			in = new BufferedReader(new FileReader("experimentBaseDirectory/referenceFronts/AntiSpamFilterProblem.rf"));
+				while ((line = in.readLine()) != null) {
+				    String falses[] = line.split(" ");
+				    fp.add((int) Double.parseDouble(falses[0]));
+				    fn.add((int) Double.parseDouble(falses[1]));
+					}
+				in.close();
+		} catch (IOException e) {return null;}
+		
+		int smallest=fp.get(0);
+		int indexSmallest=0;
+		for(int curr: fp) {
+			if(curr < smallest) {
+				smallest=curr;
+				indexSmallest=fp.indexOf(curr);
+			}
+			if(curr == smallest) {
+				if(fn.get(fp.indexOf(curr)) < fn.get(indexSmallest)){
+					smallest=curr;
+					indexSmallest=fp.indexOf(curr);
+				}
+			}
+		}
+		String[] result=new String[2];
+		result[0]=fp.get(indexSmallest).toString();
+		result[1]=fn.get(indexSmallest).toString();
+		return result;
+	
+	}
+	
 	public static void main(String[] args) {
-		System.out.println(RuleScanner.readFile("rules.cf"));
+		//System.out.println(RuleScanner.readFile("rules.cf"));
+		System.out.println(Arrays.toString(RuleScanner.resultReader()));
 	}
 
 
