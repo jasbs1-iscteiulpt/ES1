@@ -14,10 +14,12 @@ public class AntiSpamFilterProblem extends AbstractDoubleProblem {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private String filepath;
 
-	public AntiSpamFilterProblem() {
+	public AntiSpamFilterProblem(String filepath) {
 	    // 335 variables (anti-spam filter rules) rules.cf lines 
 	    this(335);
+	    this.filepath=filepath;
 	  }
 
 	  public AntiSpamFilterProblem(Integer numberOfVariables) {
@@ -45,7 +47,7 @@ public class AntiSpamFilterProblem extends AbstractDoubleProblem {
 	      pesos[i] = solution.getVariableValue(i) ;
 	    }
 	    
-	    HashMap<String,Double> rules= RuleScanner.readFile("rules.cf");
+	    HashMap<String,Double> rules= RuleScanner.readFile(filepath);
 	    int i=0;
 	    for (Entry<String, Double> entry : rules.entrySet()) {
 	    	rules.put(entry.getKey(), pesos[i]);

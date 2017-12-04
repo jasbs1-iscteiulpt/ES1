@@ -20,11 +20,11 @@ import java.util.List;
 public class AntiSpamFilterAutomaticConfiguration {
   private static final int INDEPENDENT_RUNS = 5 ;
 
-  public static void main(String[] args) throws IOException {
+  public static void run(String filepath) throws IOException {
     String experimentBaseDirectory = "experimentBaseDirectory";
 
     List<ExperimentProblem<DoubleSolution>> problemList = new ArrayList<>();
-    problemList.add(new ExperimentProblem<>(new AntiSpamFilterProblem()));
+    problemList.add(new ExperimentProblem<>(new AntiSpamFilterProblem(filepath)));
 
     List<ExperimentAlgorithm<DoubleSolution, List<DoubleSolution>>> algorithmList =
             configureAlgorithmList(problemList);

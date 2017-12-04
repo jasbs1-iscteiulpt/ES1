@@ -6,6 +6,7 @@ import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 
 import javax.swing.GroupLayout;
@@ -14,14 +15,13 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenuBar;
-import javax.swing.JProgressBar;
+import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JTabbedPane;
 
 
 public class Interface {
@@ -31,7 +31,10 @@ public class Interface {
 	private JTextField textField;
 	private  HashMap<String, Double> rulesArray=new HashMap<String, Double>();
 	private DefaultTableModel model;
+	private JRadioButton rdbtnAutomatic;
+	private JRadioButton rdbtnManual;
 	
+	boolean auto=false; //auto=false ==> manual, auto=true ==> automatic
 	public File file;
 	
 	/**
@@ -63,7 +66,7 @@ public class Interface {
 	private void initialize() {
 		frame = new JFrame("Anti Spam Filter For Professional MailBox - Manual Mode");
 		frame.getContentPane().setBackground(new Color(255, 255, 255));
-		frame.setBounds(100, 100, 632, 430);
+		frame.setBounds(100, 100, 622, 432);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -107,14 +110,28 @@ public class Interface {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Main Run!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Ja cria o vetor manualmente aqui quando clicas run!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-				for(int i=0; i<rulesArray.size(); i++) {
-					rulesArray.put(model.getValueAt(i, 0).toString(), Double.parseDouble(model.getValueAt(i, 1).toString()));
+				if(file!=null){
+					
+					if(auto) {
+						try {
+							AntiSpamFilterAutomaticConfiguration.run(file.getAbsolutePath());
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						} else {
+								for(int i=0; i<rulesArray.size(); i++) {
+										rulesArray.put(model.getValueAt(i, 0).toString(), Double.parseDouble(model.getValueAt(i, 1).toString()));
+								}
+								MailTest test=new MailTest(rulesArray);
+								label.setText(Integer.toString(test.getFP()));
+								label_1.setText(Integer.toString(test.getFN())); 
+						}
 				}
-				MailTest test=new MailTest(rulesArray);
-				label.setText(Integer.toString(test.getFP()));
-				label_1.setText(Integer.toString(test.getFN())); 
-			}
-		});
+				else {
+					JOptionPane.showMessageDialog(frame, "No Configuration Loaded","Unnable to Run",JOptionPane.WARNING_MESSAGE);
+				}
+		}});
 		btnNewButton.setForeground(Color.BLACK);
 		btnNewButton.setBackground(SystemColor.textHighlight);
 		
@@ -136,16 +153,44 @@ public class Interface {
 				}
 			}
 		});
+		
+		rdbtnAutomatic = new JRadioButton("Automatic");
+		rdbtnAutomatic.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				rdbtnManual.setSelected(false);
+				auto=true;
+			}
+		});
+		
+		rdbtnManual = new JRadioButton("Manual");
+		rdbtnManual.setSelected(true);
+		rdbtnManual.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				rdbtnAutomatic.setSelected(false);
+				auto=false;
+			}
+		});
+		
+		JLabel lblRunningMode = new JLabel("Running Mode:");
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(19)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addComponent(btnSave)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(btnSave))
+							.addComponent(lblRunningMode, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(rdbtnManual, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(rdbtnAutomatic, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)
+							.addGap(19))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 								.addGroup(groupLayout.createSequentialGroup()
@@ -155,21 +200,21 @@ public class Interface {
 								.addComponent(scrollPane, Alignment.TRAILING, 0, 0, Short.MAX_VALUE))
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(49)
-									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+									.addPreferredGap(ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addGroup(groupLayout.createSequentialGroup()
+											.addComponent(lblFalsosPositivos)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(label, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
+										.addGroup(groupLayout.createSequentialGroup()
 											.addComponent(lblFalsosNegativos)
-											.addComponent(lblFalsosPositivos))
-										.addGroup(groupLayout.createSequentialGroup()
-											.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-											.addGap(16))
-										.addGroup(groupLayout.createSequentialGroup()
-											.addComponent(label, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
-											.addGap(23))))
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)))
+									.addGap(21))
 								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(21)
+									.addGap(18)
 									.addComponent(btnBrowser)))))
-					.addContainerGap(20, Short.MAX_VALUE))
+					.addGap(66))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -181,21 +226,24 @@ public class Interface {
 						.addComponent(btnBrowser))
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(33)
-							.addComponent(lblFalsosPositivos)
+							.addGap(34)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblFalsosPositivos)
+								.addComponent(label, GroupLayout.PREFERRED_SIZE, 9, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(label, GroupLayout.PREFERRED_SIZE, 9, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(lblFalsosNegativos)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(label_1))
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblFalsosNegativos)
+								.addComponent(label_1)))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(9)
 							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 289, GroupLayout.PREFERRED_SIZE)))
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnNewButton)
-						.addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblRunningMode)
+						.addComponent(rdbtnManual)
+						.addComponent(rdbtnAutomatic))
 					.addGap(5))
 		);
 		
