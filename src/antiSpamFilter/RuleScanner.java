@@ -117,21 +117,23 @@ public class RuleScanner {
 		
 		int smallest=fp.get(0);
 		int indexSmallest=0;
-		for(int curr: fp) {
-			if(curr < smallest) {
-				smallest=curr;
-				indexSmallest=fp.indexOf(curr);
-			}
-			if(curr == smallest) {
-				if(fn.get(fp.indexOf(curr)) < fn.get(indexSmallest)){
-					smallest=curr;
-					indexSmallest=fp.indexOf(curr);
+		for(int i=0; i<fp.size(); i++) {
+			if(fp.get(i) < smallest) {
+				smallest=fp.get(i);
+				indexSmallest=i;
+			}else{
+				if(fp.get(i) == smallest) {
+					if(fn.get(i) < fn.get(indexSmallest)){
+						smallest=fp.get(i);
+						indexSmallest=i;
+					}
 				}
 			}
 		}
-		String[] result=new String[2];
-		result[0]=fp.get(indexSmallest).toString();
-		result[1]=fn.get(indexSmallest).toString();
+		String[] result=new String[3];
+		result[0]=fp.get(indexSmallest).toString(); //FP
+		result[1]=fn.get(indexSmallest).toString(); //FN
+		result[2]=Integer.toString(indexSmallest);  //INDEX (linha)
 		return result;
 	
 	}

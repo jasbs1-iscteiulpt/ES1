@@ -68,6 +68,7 @@ public class Interface {
 		frame.getContentPane().setBackground(new Color(255, 255, 255));
 		frame.setBounds(100, 100, 622, 432);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		
@@ -115,6 +116,9 @@ public class Interface {
 					if(auto) {
 						try {
 							AntiSpamFilterAutomaticConfiguration.run(file.getAbsolutePath());
+							String [] falses =RuleScanner.resultReader();
+							label.setText(falses[0]);
+							label_1.setText(falses[1]);
 						} catch (IOException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
