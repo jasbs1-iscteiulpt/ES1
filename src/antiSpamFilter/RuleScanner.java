@@ -8,6 +8,9 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Scanner;
 
 /**
@@ -99,6 +102,7 @@ public class RuleScanner {
 		} catch(IOException ex){}
 	}
 	
+	//javadoc
 	public static String[] resultReader() {
 		String line = "";
 		BufferedReader in;
@@ -138,10 +142,47 @@ public class RuleScanner {
 	
 	}
 	
-	public static void main(String[] args) {
-		//System.out.println(RuleScanner.readFile("rules.cf"));
-		System.out.println(Arrays.toString(RuleScanner.resultReader()));
-	}
+	//JAVADOC
+	public static HashMap<String, Double> resultConfig(HashMap<String, Double> config, int index){
+			
+			try {
+	
+		        File file = new File("experimentBaseDirectory/referenceFronts/AntiSpamFilterProblem.rs");
+		        Scanner input = new Scanner(file);
+		        int lineCount=0;
+		        while (input.hasNextLine()) {
+		        	if(lineCount==index) {
+		        		Scanner line=new Scanner(input.nextLine());
+		        		Iterator<Entry<String, Double>> it = config.entrySet().iterator();
+		        		while(line.hasNext()) {
+		        			double value=Double.parseDouble(line.next());
+		        			HashMap.Entry<String, Double> pair = (HashMap.Entry<String, Double>)it.next();
+		    		    	config.put(pair.getKey(),value);
+		        		}
+		        		line.close();
+		        	}
+		        	else {
+		        		input.nextLine();
+		        		lineCount++;
+		        	}
+		        }
+		        input.close();
+	
+		    	} catch (Exception ex) {
+		        ex.printStackTrace();
+		    	}
+			
+			return config;
+			
+		}
+				
+		//main de testes
+		public static void main(String[] args) {
+			System.out.println(RuleScanner.readFile("rules.cf"));
+			String[] pila = RuleScanner.resultReader();
+			int index=Integer.parseInt(pila[2]);
+			System.out.println(RuleScanner.resultConfig(RuleScanner.readFile("rules.cf"), index));
+		}
 
 
 }

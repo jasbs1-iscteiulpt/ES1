@@ -64,7 +64,7 @@ public class Interface {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame("Anti Spam Filter For Professional MailBox - Manual Mode");
+		frame = new JFrame("Anti Spam Filter For Professional MailBox");
 		frame.getContentPane().setBackground(new Color(255, 255, 255));
 		frame.setBounds(100, 100, 622, 432);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -119,6 +119,9 @@ public class Interface {
 							String [] falses =RuleScanner.resultReader();
 							label.setText(falses[0]);
 							label_1.setText(falses[1]);
+							rulesArray=RuleScanner.resultConfig(rulesArray, Integer.parseInt(falses[2]));
+							model.setDataVector(RuleScanner.MapToArray(rulesArray), new String[] {"Regras", "Peso"});
+			            	model.fireTableDataChanged();
 						} catch (IOException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
