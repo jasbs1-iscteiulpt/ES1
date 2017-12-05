@@ -157,6 +157,9 @@ public class Interface {
 				}
 				if(file!=null){
 					RuleScanner.writeFile(file.getAbsolutePath(), RuleScanner.MapToArray(rulesArray));
+					JOptionPane.showMessageDialog(frame, "Configuration Saved","Success",JOptionPane.INFORMATION_MESSAGE);
+				} else {
+					JOptionPane.showMessageDialog(frame, "File location not specified","Error while saving",JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
