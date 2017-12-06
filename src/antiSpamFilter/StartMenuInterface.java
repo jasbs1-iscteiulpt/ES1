@@ -9,6 +9,12 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+/**
+ * Starter GUI of the Anti Spam Filter For Professional MailBox (Optional)
+ * @author ES1-METI-PL-106
+ *
+ */
+
 public class StartMenuInterface {
 
 	private JFrame frame;

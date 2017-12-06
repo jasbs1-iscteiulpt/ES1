@@ -15,7 +15,7 @@ import java.util.Scanner;
 
 /**
  * 
- * General pourpose rule.cf reader/writer with only static methods
+ * General pourpose rule.cf reader/writer/editor with only static methods
  * @author ES1-METI-PL-106
  * 
  * **/
@@ -102,7 +102,14 @@ public class RuleScanner {
 		} catch(IOException ex){}
 	}
 	
-	//javadoc
+	/**
+	 * 
+	 * Returns the best configuration results FP=result[0], FN=result[1], and result[2] is the line index 
+	 * to get the respective configuration from the generator ".rs" file
+	 * 
+	 * @return String[] result
+	 * 
+	 * **/
 	public static String[] resultReader() {
 		String line = "";
 		BufferedReader in;
@@ -142,7 +149,18 @@ public class RuleScanner {
 	
 	}
 	
-	//JAVADOC
+	/**
+	 * 
+	 * Fills the given Hashmap values with the corresponding configuration result values in the index position of the generated ".rs"
+	 *
+	 * (ex: if index=2, the resultConfig(config, index) will fill config with the values in the second line (corresponding ones) of the ".rs" file
+	 * 
+	 * @param config
+	 * @param index
+	 * @return HashMap config
+	 * 
+	 */
+	
 	public static HashMap<String, Double> resultConfig(HashMap<String, Double> config, int index){
 			
 			try {
@@ -179,8 +197,8 @@ public class RuleScanner {
 		//main de testes
 		public static void main(String[] args) {
 			System.out.println(RuleScanner.readFile("rules.cf"));
-			String[] pila = RuleScanner.resultReader();
-			int index=Integer.parseInt(pila[2]);
+			String[] p = RuleScanner.resultReader();
+			int index=Integer.parseInt(p[2]);
 			System.out.println(RuleScanner.resultConfig(RuleScanner.readFile("rules.cf"), index));
 		}
 
