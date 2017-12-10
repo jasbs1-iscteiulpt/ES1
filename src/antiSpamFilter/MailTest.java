@@ -80,7 +80,7 @@ public class MailTest {
 		    		summ=summ+rulesArray.get(rules.get(i));
 		    	}
 		    }
-		    if(summ<-5) {
+		    if(summ<=5) {
 		    	checksum++;
 		    }
 		}
