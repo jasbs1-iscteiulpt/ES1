@@ -1,22 +1,26 @@
 package jUnitTests;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.Assert.*;
 
-import java.util.Arrays;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import antiSpamFilter.RuleScanner;
 
-class TestRuleScanner {
+public class TestRuleScanner {
 
 	@Test
-	void test() {
+	public void test() {
 		assertNotNull(RuleScanner.readFile("rulesNotNull.cf"));
 		String[][] test = RuleScanner.MapToArray(RuleScanner.readFile("rulesNotNull.cf"));
 		RuleScanner.writeFile("rulesNotNull.cf", test);
 		assertArrayEquals(test,RuleScanner.MapToArray(RuleScanner.readFile("rulesNotNull.cf")));
+	}
+	
+	@Test
+	public void resultTest() {
+		assertNotNull(RuleScanner.resultReader());
+		String[] index=RuleScanner.resultReader();
+		assertNotEquals(RuleScanner.readFile("rules.cf"),RuleScanner.resultConfig(RuleScanner.readFile("rules.cf") , Integer.parseInt(index[2])));
 	}
 	
 }

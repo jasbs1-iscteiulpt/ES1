@@ -1,4 +1,4 @@
-package antiSpamFilter;
+package interfaceAndProblem;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -23,6 +23,9 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
 
+import antiSpamFilter.MailTest;
+import antiSpamFilter.RuleScanner;
+
 /**
  * Main GUI of the Anti Spam Filter For Professional MailBox
  * @author ES1-METI-PL-106
@@ -31,7 +34,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class Interface {
 
-	JFrame frame;
+	public JFrame frame;
 	private JTable table;
 	private JTextField textField;
 	private  HashMap<String, Double> rulesArray=new HashMap<String, Double>();

@@ -1,4 +1,4 @@
-package antiSpamFilter;
+package interfaceAndProblem;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -17,7 +17,7 @@ import javax.swing.JLabel;
 
 public class StartMenuInterface {
 
-	private JFrame frame;
+	public JFrame frame;
 
 	/**
 	 * Launch the application.

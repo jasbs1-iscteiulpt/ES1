@@ -1,4 +1,4 @@
-package antiSpamFilter;
+package interfaceAndProblem;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,6 +7,9 @@ import java.util.Map.Entry;
 
 import org.uma.jmetal.problem.impl.AbstractDoubleProblem;
 import org.uma.jmetal.solution.DoubleSolution;
+
+import antiSpamFilter.MailTest;
+import antiSpamFilter.RuleScanner;
 
 public class AntiSpamFilterProblem extends AbstractDoubleProblem {
 

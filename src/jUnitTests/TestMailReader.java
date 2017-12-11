@@ -1,15 +1,15 @@
 package jUnitTests;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import antiSpamFilter.MailReader;
 
-class TestMailReader {
+public class TestMailReader {
 
 	@Test
-	void test() {
+	public void test() {
 		assertNotNull(MailReader.read("rulesNotNull.cf"));
 		assertNotNull(MailReader.read("rulesNull.cf"));
 		assertNotEquals(MailReader.read("rulesNotNull.cf"), MailReader.read("rulesNull.cf"));
