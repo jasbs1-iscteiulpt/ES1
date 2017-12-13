@@ -1,4 +1,4 @@
-package interfaceAndProblem;
+package antiSpamFilter;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -21,6 +21,7 @@ public class StartMenuInterface {
 
 	/**
 	 * Launch the application.
+	 * @param args main arguments
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {

@@ -1,4 +1,4 @@
-package interfaceAndProblem;
+package antiSpamFilter;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -23,8 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
 
-import antiSpamFilter.MailTest;
-import antiSpamFilter.RuleScanner;
+import interfaceAndProblem.AntiSpamFilterAutomaticConfiguration;
 
 /**
  * Main GUI of the Anti Spam Filter For Professional MailBox
@@ -47,6 +46,7 @@ public class Interface {
 	
 	/**
 	 * Launch the application.
+	 * @param args main arguments
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {

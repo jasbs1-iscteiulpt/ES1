@@ -19,6 +19,7 @@ import java.util.List;
 
 public class AntiSpamFilterAutomaticConfiguration {
   private static final int INDEPENDENT_RUNS = 5 ;
+  public static int SIMULATION = 2500;
 
   public static void run(String filepath) throws IOException {
     String experimentBaseDirectory = "experimentBaseDirectory";
@@ -59,7 +60,7 @@ public class AntiSpamFilterAutomaticConfiguration {
               problemList.get(i).getProblem(),
               new SBXCrossover(1.0, 5),
               new PolynomialMutation(1.0 / problemList.get(i).getProblem().getNumberOfVariables(), 10.0))
-              .setMaxEvaluations(2500)
+              .setMaxEvaluations(AntiSpamFilterAutomaticConfiguration.SIMULATION)
               .setPopulationSize(100)
               .build();
       algorithms.add(new ExperimentAlgorithm<>(algorithm, "NSGAII", problemList.get(i).getTag()));

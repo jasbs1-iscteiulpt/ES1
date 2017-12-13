@@ -61,7 +61,7 @@ public class RuleScanner {
 	/**
 	 * 
 	 * General purpose HashMap to String[][] converter
-	 * @param rulesArray
+	 * @param rulesArray String[][] filled with th HashMap rules/values
 	 * @return String rules
 	 * 
 	 * **/
@@ -153,8 +153,8 @@ public class RuleScanner {
 	 *
 	 * (ex: if index=2, the resultConfig(config, index) will fill config with the values in the second line (corresponding ones) of the ".rs" file
 	 * 
-	 * @param config
-	 * @param index
+	 * @param config HashMap
+	 * @param index value to search config
 	 * @return HashMap config
 	 * 
 	 */

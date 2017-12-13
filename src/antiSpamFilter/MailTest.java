@@ -25,7 +25,6 @@ public class MailTest {
 	 * Constructor
 	 * 
 	 * @param rulesArray Rules Hashmap with rule/value pairs
-	 * @return MailTest
 	 * 
 	 * **/
 	
