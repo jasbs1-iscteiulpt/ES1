@@ -30,8 +30,8 @@ public class MailTest {
 	
 	public MailTest(HashMap<String, Double> rulesArray) {
 		fn=0;
-		this.spam=MailReader.read("spam.log");
-		this.mail=MailReader.read("ham.log");
+		this.spam=MailReader.read("src/spam.log");
+		this.mail=MailReader.read("src/ham.log");
 		this.rulesArray=rulesArray;
 	}
 	

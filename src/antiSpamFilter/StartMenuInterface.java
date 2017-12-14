@@ -73,7 +73,7 @@ public class StartMenuInterface {
 		frame.getContentPane().add(lblEsmetipl);
 		
 		JLabel label = new JLabel();
-		ImageIcon icon = new ImageIcon("mailicon.png");
+		ImageIcon icon = new ImageIcon("src/mailicon.png");
 		label.setIcon(icon);
 		label.setBounds(171, 69, 83, 36);
 		frame.getContentPane().add(label);
