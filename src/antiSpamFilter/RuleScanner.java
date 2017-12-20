@@ -176,6 +176,7 @@ public class RuleScanner {
 		    		    	config.put(pair.getKey(),value);
 		        		}
 		        		line.close();
+		        		lineCount++;
 		        	}
 		        	else {
 		        		input.nextLine();

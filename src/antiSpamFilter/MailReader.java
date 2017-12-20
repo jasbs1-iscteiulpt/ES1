@@ -46,7 +46,7 @@ public class MailReader {
 		return hash1;
 	}
 	
-	public static void main(String[] pussy){
+	public static void main(String[] args){
 		System.out.print(MailReader.read("ham.log"));
 	}
 }
