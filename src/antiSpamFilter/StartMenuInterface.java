@@ -15,6 +15,7 @@ import javax.swing.JLabel;
  *
  */
 
+//Simple initialize program window just for info and launching
 public class StartMenuInterface {
 
 	public JFrame frame;

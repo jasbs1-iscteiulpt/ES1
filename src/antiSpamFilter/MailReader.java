@@ -43,7 +43,7 @@ public class MailReader {
 				e.printStackTrace();
 		}
 	
-		return hash1;
+		return hash1;//ham or spam mail structure
 	}
 	
 	public static void main(String[] args){

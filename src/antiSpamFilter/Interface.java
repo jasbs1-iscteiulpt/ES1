@@ -118,10 +118,10 @@ public class Interface {
 		JButton btnNewButton = new JButton("Run");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Main Run!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Ja cria o vetor manualmente aqui quando clicas run!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+				//Main Run!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 				if(file!=null){
 					
-					if(auto) {
+					if(auto) {//auto mode
 						try {
 							AntiSpamFilterAutomaticConfiguration.run(file.getAbsolutePath());
 							String [] falses =RuleScanner.resultReader();
@@ -134,7 +134,7 @@ public class Interface {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-						} else {
+						} else {//manual mode
 								for(int i=0; i<rulesArray.size(); i++) {
 										rulesArray.put(model.getValueAt(i, 0).toString(), Double.parseDouble(model.getValueAt(i, 1).toString()));
 								}
@@ -159,7 +159,7 @@ public class Interface {
 		btnSave.addActionListener(new ActionListener() {
 			
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {//save rule values to rules.cf (loaded file) location
 				for(int i=0; i<rulesArray.size(); i++) {
 					rulesArray.put(model.getValueAt(i, 0).toString(), Double.parseDouble(model.getValueAt(i, 1).toString()));
 				}
@@ -175,7 +175,7 @@ public class Interface {
 		rdbtnAutomatic = new JRadioButton("Automatic");
 		rdbtnAutomatic.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent arg0) {//toggle to auto
 				rdbtnManual.setSelected(false);
 				auto=true;
 			}
@@ -185,13 +185,15 @@ public class Interface {
 		rdbtnManual.setSelected(true);
 		rdbtnManual.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent arg0) {//toggle to manual
 				rdbtnAutomatic.setSelected(false);
 				auto=false;
 			}
 		});
 		
 		JLabel lblRunningMode = new JLabel("Running Mode:");
+		
+		//set of style effects and window configs for window builder Plug-in
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -267,7 +269,7 @@ public class Interface {
 		
 		table = new JTable();
 		String[][] modeling=new String[335][2];
-		model = new DefaultTableModel(modeling,new String[] {"Regras", "Peso"});
+		model = new DefaultTableModel(modeling,new String[] {"Regras", "Peso"}); //rules table
 		table.setModel(model);
 		scrollPane.setViewportView(table);
 		

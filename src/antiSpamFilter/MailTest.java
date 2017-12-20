@@ -16,8 +16,8 @@ import java.util.Map.Entry;
 public class MailTest {
 	
 	int fn;
-	HashMap<String, ArrayList<String> > spam;
-	HashMap<String, ArrayList<String> > mail;
+	HashMap<String, ArrayList<String> > spam;//mails tagged as spam for testing
+	HashMap<String, ArrayList<String> > mail;//mails tagged as ham for testing
 	HashMap<String, Double> rulesArray;
 	
 	/**
