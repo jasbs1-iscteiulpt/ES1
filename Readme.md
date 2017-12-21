@@ -13,5 +13,4 @@ Identificação da variante do projeto desenvolvida:
 AntiSpamConfigurationForProfessionalMailbox
 
 Link para um vídeo no youtube com a demonstração da aplicação final desenvolvida:
-
 https://www.youtube.com/watch?v=ruWjUeBuNK4
